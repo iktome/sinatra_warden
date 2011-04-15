@@ -24,7 +24,7 @@ module Sinatra
 
       # Authenticate a user against defined strategies
       def authenticate(*args)
-        warden.authenticate!(*args)
+        catch(:warden) { warden.authenticate!(*args) }
       end
       alias_method :login, :authenticate
 
